@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="开始学习《算法导论》对应课程6.046J，第一课主要介绍课程相关内容和算法相关概念的分析（以插入排序和归并排序为例）">
+<meta name="description" content="6.046J课程简介 算法相关概念介绍（以插入排序和归并排序为例）">
 <meta name="keywords" content="6.046J课程笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ITA（课程简介及算法分析）">
 <meta property="og:url" content="http://yoursite.com/2018/08/08/1. 课程简介及算法分析/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="开始学习《算法导论》对应课程6.046J，第一课主要介绍课程相关内容和算法相关概念的分析（以插入排序和归并排序为例）">
+<meta property="og:description" content="6.046J课程简介 算法相关概念介绍（以插入排序和归并排序为例）">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://pd1nyuhpx.bkt.clouddn.com/blog/180808/LiC8lCiIid.png">
-<meta property="og:updated_time" content="2018-08-12T04:47:33.835Z">
+<meta property="og:updated_time" content="2018-08-21T16:57:53.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ITA（课程简介及算法分析）">
-<meta name="twitter:description" content="开始学习《算法导论》对应课程6.046J，第一课主要介绍课程相关内容和算法相关概念的分析（以插入排序和归并排序为例）">
+<meta name="twitter:description" content="6.046J课程简介 算法相关概念介绍（以插入排序和归并排序为例）">
 <meta name="twitter:image" content="http://pd1nyuhpx.bkt.clouddn.com/blog/180808/LiC8lCiIid.png">
 
 
@@ -300,10 +300,6 @@
           
 
           
-              <div class="post-description">
-                  开始学习《算法导论》对应课程6.046J，第一课主要介绍课程相关内容和算法相关概念的分析（以插入排序和归并排序为例）
-              </div>
-          
 
         </div>
       </header>
@@ -318,23 +314,26 @@
       
 
       
-        <ol>
-<li>the theoretical study of computer-program performance and resource usage</li>
-</ol>
+        <blockquote>
 <ul>
+<li>6.046J课程简介</li>
+<li>算法相关概念介绍（以插入排序和归并排序为例）</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<ol>
+<li>the theoretical study of computer-program performance and resource usage<ul>
 <li>性能有时候直接决定了可用和不可用</li>
 <li>性能是确保良好的用户体验的前提、安全的保障</li>
 <li>性能就像可支付的货币，作为衡量的标准</li>
 </ul>
-<ol start="2">
-<li>运行时间取决于：（运行时间的上界代表了对用户的承诺）</li>
+</li>
 </ol>
-<ul>
-<li>输入内容</li>
-<li>输入规模</li>
-</ul>
+<ol start="2">
+<li>运行时间取决于：输入内容和输入规模（运行时间的上界代表了对用户的承诺）</li>
+</ol>
 <ol start="3">
-<li><p>最好情况往往用处不大（bogus, cheat）</p>
+<li><p>最好情况下的代价往往在实际应用中用处不大（bogus, cheat）</p>
 </li>
 <li><p>worst case time</p>
 <ul>
@@ -349,12 +348,17 @@
 </ul>
 </li>
 <li><p>渐近符号：θ（忽略低阶项和常数因子）eg. <img src="http://pd1nyuhpx.bkt.clouddn.com/blog/180808/LiC8lCiIid.png" alt="插入排序时间复杂度"></p>
-<p>theta兼顾了相对速度和绝对速度。</p>
+<p>θ兼顾了相对速度和绝对速度。</p>
 <p>有时候我们也会关注一些相对低速的算法，因为规模n并不总是无限大的，尽管这些算法在渐近的观点来看效率不高，但是在一个合理的规模n内却是适合的。</p>
 </li>
-<li><p>内存引用计数</p>
+<li><p>以内存引用计数为单位计算时间复杂度</p>
 </li>
 </ol>
+<p>自己根据课程中的伪代码实现了插入排序和归并排序的代码：</p>
+<p><strong>插入排序</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; InsertionSort(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; u_sort) &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;u_sort.size();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> val = u_sort[i];</span><br><span class="line">		<span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; val&gt; u_sort[j]) &#123;</span><br><span class="line">			u_sort[j+<span class="number">1</span>] = u_sort[j];</span><br><span class="line">			j--;</span><br><span class="line">		&#125;</span><br><span class="line">		u_sort[j + <span class="number">1</span>] = val;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> u_sort;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>归并排序</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -385,8 +389,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/05/blog-name/" rel="next" title="blog name">
-                <i class="fa fa-chevron-left"></i> blog name
+              <a href="/2018/08/05/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -395,8 +399,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/08/2. 渐近符号、递递归及解法/" rel="prev" title="渐近符号、递递归及解法">
-                渐近符号、递递归及解法 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/08/2. 渐近符号、递递归及解法/" rel="prev" title="渐近符号、递归及解法">
+                渐近符号、递归及解法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -465,7 +469,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

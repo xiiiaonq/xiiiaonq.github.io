@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="6.046J课程简介 算法相关概念介绍（以插入排序和归并排序为例）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-23T17:14:30.399Z">
+<meta property="og:updated_time" content="2018-08-23T17:20:42.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ITA（课程简介及算法分析）">
 <meta name="twitter:description" content="6.046J课程简介 算法相关概念介绍（以插入排序和归并排序为例）">
@@ -319,35 +319,30 @@
 </ul>
 </blockquote>
 <a id="more"></a>
-<h2 id="基本概念和要点"><a href="#基本概念和要点" class="headerlink" title="基本概念和要点"></a>基本概念和要点</h2><ol>
-<li><p>the theoretical study of computer-program performance and resource usage</p>
+<h2 id="基本概念和要点"><a href="#基本概念和要点" class="headerlink" title="基本概念和要点"></a>基本概念和要点</h2><p>the theoretical study of computer-program performance and resource usage</p>
 <ul>
 <li>性能有时候直接决定了可用和不可用</li>
 <li>性能是确保良好的用户体验的前提、安全的保障</li>
 <li>性能就像可支付的货币，作为衡量的标准</li>
 </ul>
-</li>
-<li><p>运行时间取决于：输入内容和输入规模（运行时间的上界代表了对用户的承诺）</p>
-</li>
-<li><p>最好情况下的代价往往在实际应用中用处不大（bogus, cheat）</p>
-</li>
-<li><p>worst case time</p>
+<p>运行时间取决于：输入内容和输入规模（运行时间的上界代表了对用户的承诺）</p>
+<ul>
+<li>输入内容：包括输入值的类型、排序、数值大小等</li>
+<li>输入规模：输入内容的规模大小</li>
+</ul>
+<p>最好情况下的代价往往在实际应用中用处不大（bogus, cheat），在现实中，更多地是考虑最差的情况</p>
+<p>worst case time</p>
 <ul>
 <li>relative speed(same machine) 相对速度</li>
 <li>absolute speed(diff machine) 绝对速度</li>
 </ul>
-</li>
-<li><p>BIG IDEA 渐近分析</p>
+<p>BIG IDEA 渐近分析</p>
 <ul>
 <li>忽略依赖于机器的常量</li>
 <li>忽略具体的运行时间，而是关注其增长（n-&gt;无穷）</li>
 </ul>
-</li>
-<li><p>渐近符号：θ（忽略低阶项和常数因子）<br>θ兼顾了相对速度和绝对速度。<br>有时候我们也会关注一些相对低速的算法，因为规模n并不总是无限大的，尽管这些算法在渐近的观点来看效率不高，但是在一个合理的规模n内却是适合的。</p>
-</li>
-<li><p>以内存引用计数为单位计算时间复杂度</p>
-</li>
-</ol>
+<p>渐近符号：θ（忽略低阶项和常数因子），θ兼顾了相对速度和绝对速度。<br>有时候我们也会关注一些相对低速的算法，因为规模n并不总是无限大的，尽管这些算法在渐近的观点来看效率不高，但是在一个合理的规模n内却是适合的。</p>
+<p>以内存引用计数为单位计算时间复杂度</p>
 <h2 id="插入排序和归并排序代码"><a href="#插入排序和归并排序代码" class="headerlink" title="插入排序和归并排序代码"></a>插入排序和归并排序代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//插入排序</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; InsertionSort(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; u_sort) &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;u_sort.size();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> val = u_sort[i];</span><br><span class="line">		<span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; val&gt; u_sort[j]) &#123;</span><br><span class="line">			u_sort[j+<span class="number">1</span>] = u_sort[j];</span><br><span class="line">			j--;</span><br><span class="line">		&#125;</span><br><span class="line">		u_sort[j + <span class="number">1</span>] = val;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> u_sort;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//归并排序（“分治法”，分而治之）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeSort</span><span class="params">(<span class="keyword">int</span>* u_sort,<span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (length &lt;= <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span> (length &gt; <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		MergeSort(u_sort, length / <span class="number">2</span>);</span><br><span class="line">		MergeSort(u_sort + length / <span class="number">2</span>, length-length/<span class="number">2</span>);</span><br><span class="line">		merge(u_sort, length);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>* arr, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; temp;</span><br><span class="line">	<span class="keyword">int</span> bottom = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> mid = n / <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">int</span> first = <span class="number">0</span>, second = mid;</span><br><span class="line">	<span class="keyword">while</span>(first &lt; mid&amp;&amp;second &lt; n) &#123;</span><br><span class="line">		<span class="keyword">if</span> (arr[first] &lt;= arr[second]) &#123;</span><br><span class="line">			temp.push_back(arr[first]);</span><br><span class="line">			first++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			temp.push_back(arr[second]);</span><br><span class="line">			second++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (first &lt; mid)</span><br><span class="line">		temp.push_back(arr[first++]);</span><br><span class="line">	<span class="keyword">while</span> (second &lt; n)</span><br><span class="line">		temp.push_back(arr[second++]);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		arr[i] = temp[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="算法时间复杂度对比分析"><a href="#算法时间复杂度对比分析" class="headerlink" title="算法时间复杂度对比分析"></a>算法时间复杂度对比分析</h2><p>插入排序：$ T(n)=\sum\limits_{j=2}^{n}\theta(j)=\theta(n^2)  $</p>

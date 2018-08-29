@@ -87,10 +87,12 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="6.046J课程简介 算法相关概念介绍（以插入排序和归并排序为例）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-23T17:20:42.195Z">
+<meta property="og:image" content="http://pd1nyuhpx.bkt.clouddn.com/blog/180830/kfk6fH5CC3.png?imageslim">
+<meta property="og:updated_time" content="2018-08-29T17:21:44.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ITA（课程简介及算法分析）">
 <meta name="twitter:description" content="6.046J课程简介 算法相关概念介绍（以插入排序和归并排序为例）">
+<meta name="twitter:image" content="http://pd1nyuhpx.bkt.clouddn.com/blog/180830/kfk6fH5CC3.png?imageslim">
 
 
 
@@ -352,7 +354,17 @@ T(n)=\left\{
 \begin{array}{lr}
 \theta(1)&{n=1}  \\
 2T(n/2) +\theta(n) &{n>1}  \\
-\end{array} \right.</script>
+\end{array} \right.</script><p>归并排序的时间复杂度计算如下（递归树）：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+T(n)&=2T(n/2)+cn\\
+&=2[2T(n/4)+cn/2]+cn)\\
+&=4T(n/4)+cn+cn\\
+&=...\\
+&=n\theta(1)+cnlgn\\
+&=\theta(nlgn)
+\end{align*}</script><p><img src="http://pd1nyuhpx.bkt.clouddn.com/blog/180830/kfk6fH5CC3.png?imageslim" alt="递归树"></p>
+
       
     </div>
     
